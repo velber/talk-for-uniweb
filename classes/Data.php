@@ -82,7 +82,8 @@ class Data
 
         // поиск данных где версия в БД стала больше чем версия пришедшая в запросе
         foreach ($this->inputData['ident'] as $key => $item) {
-            if (key_exists($item, $actualDataAssoc) && $this->inputData['version'][$key] < $actualDataAssoc[$item]['version']) {
+            if (key_exists($item, $actualDataAssoc)
+                && $this->inputData['version'][$key] < $actualDataAssoc[$item]['version']) {
                 $this->updateData[$item] = array(
                     'value'   => $actualDataAssoc[$item]['value'],
                     'version' => $actualDataAssoc[$item]['version'],
@@ -100,11 +101,6 @@ class Data
      */
     public function getSerializedData()
     {
-        var_dump(array(
-            'delete' => $this->deleteData,
-            'update' => $this->updateData,
-            'new' => $this->newData,
-        ));
         return serialize(
             array(
                 'delete' => $this->deleteData,
